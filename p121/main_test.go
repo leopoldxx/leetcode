@@ -8,17 +8,15 @@ import (
 
 func TestSolution(t *testing.T) {
 	cases := []struct {
-		nums   []int
-		target int
-		result []int
+		nums1  []int
+		result int
 	}{
 		{
-			nums:   []int{2, 7, 11, 15},
-			target: 9,
-			result: []int{0, 1},
+			nums1:  []int{7, 1, 5, 3, 6, 4},
+			result: 5,
 		},
 	}
 	for _, tc := range cases {
-		assert.Equal(t, tc.result, twoSum(tc.nums, tc.target))
+		assert.Equal(t, tc.result, maxProfit(tc.nums1))
 	}
 }
