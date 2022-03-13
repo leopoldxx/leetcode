@@ -8,24 +8,19 @@ import (
 
 func TestSolution(t *testing.T) {
 	cases := []struct {
-		nums1  []int
-		nums2  []int
-		result int
+		num    int
+		result bool
 	}{
 		{
-			nums1:  []int{2, 4},
-			result: 3,
+			num:    2,
+			result: true,
 		},
 		{
-			nums1:  []int{2, 4, 5, 10},
-			result: 7,
-		},
-		{
-			nums1:  []int{18, 3, 6, 2},
-			result: 12,
+			num:    3,
+			result: false,
 		},
 	}
 	for _, tc := range cases {
-		assert.Equal(t, tc.result, numFactoredBinaryTrees(tc.nums1))
+		assert.Equal(t, tc.result, isPowerOfTwo(tc.num))
 	}
 }
