@@ -6,31 +6,6 @@ const (
 	modulo = 10e9 + 7
 )
 
-func numFactoredBinaryTrees(arr []int) int {
-	if len(arr) == 0 {
-		return 0
-	}
-	sort.Ints(arr)
-
-	dp := map[int]int{}
-
-	for i, v := range arr {
-		dp[v] = 1
-		for j := 0; j < i; j++ {
-			quotient, remainder := v/arr[j], v%arr[j]
-			if remainder == 0 {
-				dp[v] += dp[arr[j]] * dp[quotient]
-			}
-		}
-	}
-	var res int
-	for _, count := range dp {
-		res = (res + count) % modulo
-	}
-	return res
-}
-
-/*
 func foundSubTree(arr []int, countMap map[int]int, target int) int {
 	var res int
 	for i := 0; i < len(arr); i++ {
@@ -65,4 +40,3 @@ func numFactoredBinaryTrees(arr []int) int {
 	}
 	return res
 }
-*/
