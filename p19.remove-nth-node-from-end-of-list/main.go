@@ -6,6 +6,9 @@ type ListNode struct {
 }
 
 func removeNthFromEnd(head *ListNode, n int) *ListNode {
+	if head == nil {
+		return nil
+	}
 	listLen := 0
 	it := head
 	for it != nil {
