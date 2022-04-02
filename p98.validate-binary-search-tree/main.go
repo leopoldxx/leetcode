@@ -6,25 +6,38 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-func isSame(root *TreeNode, subRoot *TreeNode) bool {
-	if root == nil && subRoot == nil {
-		return true
-	} else if root != nil && subRoot == nil {
-		return false
-	} else if root == nil && subRoot != nil {
-		return false
-	} else if root.Val != subRoot.Val {
-		return false
+func isValidWithMinMax(root *TreeNode) (bool, *int, *int) {
+	if root == nil {
+		return true, nil, nil
+	} else if root.Left == nil && root.Right == nil {
+		return true, &root.Val, &root.Val
+	} else if root.Left != nil && root.Left.Val >= root.Val {
+		return false, nil, nil
+	} else if root.Right != nil && root.Right.Val <= root.Val {
+		return false, nil, nil
 	}
-	return isSame(root.Left, subRoot.Left) && isSame(root.Right, subRoot.Right)
+
+	left, lmin, lmax := isValidWithMinMax(root.Left)
+	if !left || (lmax != nil && *lmax >= root.Val) {
+		return false, nil, nil
+	}
+	right, rmin, rmax := isValidWithMinMax(root.Right)
+	if !right || (rmin != nil && *rmin <= root.Val) {
+		return false, nil, nil
+	}
+	if lmin == nil {
+		lmin = &root.Val
+	}
+	if rmax == nil {
+		rmax = &root.Val
+	}
+
+	return true, lmin, rmax
 }
-func isSubtree(root *TreeNode, subRoot *TreeNode) bool {
-	if root == nil && subRoot == nil {
-		return true
-	} else if root != nil && subRoot == nil {
-		return false
-	} else if root == nil && subRoot != nil {
-		return false
-	}
-	return isSame(root, subRoot) || isSubtree(root.Left, subRoot) || isSubtree(root.Right, subRoot)
+
+func isValidBST(root *TreeNode) bool {
+	res, _, _ := isValidWithMinMax(root)
+
+	return res
+
 }
