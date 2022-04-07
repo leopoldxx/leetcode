@@ -3,31 +3,24 @@ package main
 func lengthOfLongestSubstring(s string) int {
 	if len(s) == 0 {
 		return 0
+	} else if len(s) == 1 {
+		return 1
 	}
+	bs := []byte(s)
+	counter := [256]int{}
 
-	var (
-		maxLen = 0
-		filter = [256]int{}
-		left   = 0
-		right  = 0
-		r      rune
-	)
-
-	for right, r = range s {
-		filter[int(r)] = filter[int(r)] + 1
-		if filter[int(r)] > 1 {
-			for left < right {
-				filter[int(s[left])] = filter[int(s[left])] - 1
-				left++
-				if filter[int(r)] == 1 {
-					break
-				}
-			}
-		} else {
-			newLen := right - left + 1
-			if maxLen < newLen {
-				maxLen = newLen
-			}
+	maxLen := 0
+	left, right := 0, 0
+	for right < len(s) {
+		counter[int(bs[right])]++
+		for counter[int(bs[right])] > 1 {
+			counter[int(bs[left])]--
+			left++
+		}
+		right++
+		currentLen := right - left
+		if currentLen > maxLen {
+			maxLen = currentLen
 		}
 	}
 	return maxLen
