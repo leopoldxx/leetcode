@@ -5,5 +5,5 @@ import (
 )
 
 func TestSolution(t *testing.T) {
-	levelOrder(nil)
+	updateMatrix(nil)
 }
