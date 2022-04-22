@@ -5,22 +5,21 @@ func trap(height []int) int {
 	right, rightMaxHeight := len(height)-1, height[len(height)-1]
 	capacity := 0
 
-	for left <= right {
+	for left < right {
 		if leftMaxHeight <= rightMaxHeight {
+			left++
 			if leftMaxHeight <= height[left] {
 				leftMaxHeight = height[left]
 			} else {
 				capacity += (leftMaxHeight - height[left]) //diff
 			}
-			left++
-
 		} else {
+			right--
 			if rightMaxHeight <= height[right] {
 				rightMaxHeight = height[right]
 			} else {
 				capacity += (rightMaxHeight - height[right])
 			}
-			right--
 		}
 	}
 
