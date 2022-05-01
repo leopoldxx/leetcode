@@ -14,7 +14,7 @@ func equalRotate(mat [][]int, target [][]int) bool {
 			equalRotate270 = equalRotate270 && mat[i][j] != target[length-j-1][i]
 		}
 	}
-	return true
+	return equalRotate0 || equalRotate90 || equalRotate180 || equalRotate270
 }
 
 func findRotation(mat [][]int, target [][]int) bool {
