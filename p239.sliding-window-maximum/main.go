@@ -115,21 +115,3 @@ func maxSlidingWindow(nums []int, k int) []int {
 	}
 	return maxSumSlice
 }
-
-func findMax(nums []int) int {
-	maxNum := nums[0]
-	for i := 1; i < len(nums); i++ {
-		if maxNum < nums[i] {
-			maxNum = nums[i]
-		}
-	}
-	return maxNum
-}
-
-func maxSlidingWindowBrute(nums []int, k int) []int {
-	maxSumSlice := make([]int, 0, len(nums))
-	for i := 0; i < len(nums)-k+1; i++ {
-		maxSumSlice = append(maxSumSlice, findMax(nums[i:i+k]))
-	}
-	return maxSumSlice
-}
