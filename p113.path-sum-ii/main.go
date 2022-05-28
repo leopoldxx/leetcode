@@ -23,18 +23,10 @@ func dfs(root *TreeNode, target int, preSum int, path []*TreeNode, res *[][]int)
 		return
 	}
 	if root.Left != nil {
-		preSum += root.Val
-		path = append(path, root)
-		dfs(root.Left, target, preSum, path, res)
-		path = path[:len(path)-1]
-		preSum -= root.Val
+		dfs(root.Left, target, preSum+root.Val, append(path, root), res)
 	}
 	if root.Right != nil {
-		preSum += root.Val
-		path = append(path, root)
-		dfs(root.Right, target, preSum, path, res)
-		path = path[:len(path)-1]
-		preSum -= root.Val
+		dfs(root.Right, target, preSum+root.Val, append(path, root), res)
 	}
 }
 
