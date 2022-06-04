@@ -5,5 +5,5 @@ import (
 )
 
 func TestSolution(t *testing.T) {
-	numberOfSteps(0)
+	averageOfLevels(nil)
 }
