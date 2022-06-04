@@ -23,7 +23,7 @@ func intervalIntersection(firstList [][]int, secondList [][]int) [][]int {
 			break
 		}
 		A := firstList[0]
-		B := secondeList[0]
+		B := secondList[0]
 		ret := compare(A, B)
 		switch ret {
 		case 1:
