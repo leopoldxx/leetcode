@@ -48,7 +48,7 @@ func findAnagrams(s string, p string) []int {
 
 	for i := 1; i <= ns-np; i++ {
 		ps = computeHashIncr(ps, bs[i-1], bs[i+np-1])
-		if ph == ps && isAnagram(bp, bs[:np]) {
+		if ph == ps && isAnagram(bp, bs[i:i+np]) {
 			res = append(res, i)
 			continue
 		}
